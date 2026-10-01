@@ -1,0 +1,739 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Finder</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">🏠 PropertyFinder</div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Find Your Dream Property</h1>
+            <p>
+                Discover beautiful homes, apartments and properties
+                at the best prices.
+            </p>
+
+            <a href="#properties" class="hero-btn">
+                Explore Properties
+            </a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <h2>Find Your Property</h2>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by property name or location"
+            >
+
+            <select id="priceFilter">
+                <option value="all">All Prices</option>
+                <option value="5000000">Below ₹50 Lakhs</option>
+                <option value="10000000">Below ₹1 Crore</option>
+                <option value="20000000">Below ₹2 Crores</option>
+            >
+
+            <button onclick="filterProperties()">Search</button>
+        </div>
+    </section>
+
+    <!-- Properties -->
+    <section class="properties" id="properties">
+
+        <h2>Available Properties</h2>
+
+        <div class="property-grid" id="propertyContainer">
+
+            <!-- Property 1 -->
+            <div class="property-card"
+                 data-name="Modern Villa"
+                 data-location="Chennai"
+                 data-price="8500000">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                    alt="Modern Villa"
+                >
+
+                <div class="property-info">
+                    <h3>Modern Villa</h3>
+                    <p>📍 Chennai, Tamil Nadu</p>
+                    <h4>₹85 Lakhs</h4>
+
+                    <button
+                        class="favorite-btn"
+                        onclick="toggleFavorite(this)">
+                        ♡
+                    </button>
+
+                    <button
+                        class="details-btn"
+                        onclick="showDetails('Modern Villa')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Property 2 -->
+            <div class="property-card"
+                 data-name="Luxury Apartment"
+                 data-location="Coimbatore"
+                 data-price="6500000">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+                    alt="Luxury Apartment"
+                >
+
+                <div class="property-info">
+                    <h3>Luxury Apartment</h3>
+                    <p>📍 Coimbatore, Tamil Nadu</p>
+                    <h4>₹65 Lakhs</h4>
+
+                    <button
+                        class="favorite-btn"
+                        onclick="toggleFavorite(this)">
+                        ♡
+                    </button>
+
+                    <button
+                        class="details-btn"
+                        onclick="showDetails('Luxury Apartment')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Property 3 -->
+            <div class="property-card"
+                 data-name="Family House"
+                 data-location="Cuddalore"
+                 data-price="4500000">
+
+                <img
+                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80"
+                    alt="Family House"
+                >
+
+                <div class="property-info">
+                    <h3>Family House</h3>
+                    <p>📍 Cuddalore, Tamil Nadu</p>
+                    <h4>₹45 Lakhs</h4>
+
+                    <button
+                        class="favorite-btn"
+                        onclick="toggleFavorite(this)">
+                        ♡
+                    </button>
+
+                    <button
+                        class="details-btn"
+                        onclick="showDetails('Family House')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Property 4 -->
+            <div class="property-card"
+                 data-name="Premium House"
+                 data-location="Bangalore"
+                 data-price="15000000">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80"
+                    alt="Premium House"
+                >
+
+                <div class="property-info">
+                    <h3>Premium House</h3>
+                    <p>📍 Bangalore, Karnataka</p>
+                    <h4>₹1.5 Crores</h4>
+
+                    <button
+                        class="favorite-btn"
+                        onclick="toggleFavorite(this)">
+                        ♡
+                    </button>
+
+                    <button
+                        class="details-btn"
+                        onclick="showDetails('Premium House')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <p id="noResults" class="no-results">
+            No properties found.
+        </p>
+
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+
+        <p>
+            PropertyFinder is a simple real estate platform designed
+            to help users find their dream homes and properties easily.
+            Users can search properties, filter prices and save their
+            favorite properties.
+        </p>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+
+        <h2>Contact Us</h2>
+
+        <form id="contactForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+                required
+            >
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Phone Number"
+                required
+            >
+
+            <textarea
+                id="message"
+                placeholder="Your Message"
+                required>
+            </textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+        <p id="formMessage"></p>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 PropertyFinder | Real Estate Property Finder</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
+
+
+
+
+```css
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #222;
+}
+
+/* Navbar */
+header {
+    background-color: #111827;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+/* Hero */
+.hero {
+    min-height: 500px;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    color: white;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 14px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.hero-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Search */
+.search-section {
+    background-color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.search-section h2 {
+    margin-bottom: 25px;
+}
+
+.search-box {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input,
+.search-box select {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.search-box button {
+    padding: 14px 25px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-box button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Properties */
+.properties {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+.properties h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 32px;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.property-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+}
+
+.property-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.property-info {
+    padding: 20px;
+}
+
+.property-info h3 {
+    margin-bottom: 10px;
+}
+
+.property-info p {
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.property-info h4 {
+    color: #2563eb;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* Favorite */
+.favorite-btn {
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 170px;
+}
+
+.favorite-btn.active {
+    color: red;
+}
+
+/* Details Button */
+.details-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #111827;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.details-btn:hover {
+    background-color: #374151;
+}
+
+.no-results {
+    display: none;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+/* About */
+.about {
+    background-color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.about h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Contact */
+.contact {
+    max-width: 700px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact input,
+.contact textarea {
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.contact textarea {
+    height: 130px;
+    resize: none;
+}
+
+.contact button {
+    padding: 14px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.contact button:hover {
+    background-color: #1d4ed8;
+}
+
+#formMessage {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #111827;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    .property-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .property-grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+
+
+
+
+```javascript
+// Search and price filter
+function filterProperties() {
+
+    const searchInput =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    const priceFilter =
+        document.getElementById("priceFilter").value;
+
+    const properties =
+        document.querySelectorAll(".property-card");
+
+    let visibleCount = 0;
+
+    properties.forEach(function(property) {
+
+        const name =
+            property.dataset.name.toLowerCase();
+
+        const location =
+            property.dataset.location.toLowerCase();
+
+        const price =
+            Number(property.dataset.price);
+
+        const searchMatch =
+            name.includes(searchInput) ||
+            location.includes(searchInput);
+
+        let priceMatch = true;
+
+        if (priceFilter !== "all") {
+            priceMatch =
+                price <= Number(priceFilter);
+        }
+
+        if (searchMatch && priceMatch) {
+            property.style.display = "block";
+            visibleCount++;
+        } else {
+            property.style.display = "none";
+        }
+    });
+
+    const noResults =
+        document.getElementById("noResults");
+
+    if (visibleCount === 0) {
+        noResults.style.display = "block";
+    } else {
+        noResults.style.display = "none";
+    }
+}
+
+
+// Favorite button
+function toggleFavorite(button) {
+
+    button.classList.toggle("active");
+
+    if (button.classList.contains("active")) {
+        button.innerHTML = "♥";
+    } else {
+        button.innerHTML = "♡";
+    }
+}
+
+
+// Property details
+function showDetails(propertyName) {
+
+    alert(
+        "Property: " +
+        propertyName +
+        "\n\nFor more information, please contact us."
+    );
+}
+
+
+// Contact form
+document
+    .getElementById("contactForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value;
+
+        const formMessage =
+            document.getElementById("formMessage");
+
+        formMessage.innerHTML =
+            "Thank you, " +
+            name +
+            "! Your message has been submitted successfully.";
+
+        this.reset();
+    });
+
+
+// Search when pressing Enter
+document
+    .getElementById("searchInput")
+    .addEventListener("keyup", function(event) {
+
+        if (event.key === "Enter") {
+            filterProperties();
+        }
+    });
+```
